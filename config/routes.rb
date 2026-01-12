@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   end
 
   resource :dashboard, controller: :dashboard, only: [ :show, :update ] do
-    resources :projects, only: [ :new, :create, :edit, :update, :destroy ]
+    resources :projects, only: [ :new, :create, :edit, :update, :destroy ] do
+      collection do
+        get :get_ogp
+      end
+    end
   end
 
   # Public Portfolio Routes

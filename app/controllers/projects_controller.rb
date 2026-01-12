@@ -2,6 +2,20 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: [ :edit, :update, :destroy ]
 
+  def get_ogp
+    url = params[:url]
+    begin
+      page = MetaInspector.new(url)
+      render json: {
+        title: page.best_title,
+        description: page.best_description,
+        image: page.images.best
+      }
+    rescue => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    end
+  end
+
   def new
     @project = current_user.projects.build
   end

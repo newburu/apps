@@ -1,7 +1,7 @@
 <%= form_with(model: [ :dashboard, project ], local: true) do |f| %>
   <% if project.errors.any? %>
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-      <h3 class="font-bold"><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h3>
+      <h3 class="font-bold">入力内容に以下のエラーがあります:</h3>
       <ul class="list-disc list-inside">
         <% project.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,32 +10,33 @@
     </div>
   <% end %>
 
-  <div class="space-y-6">
+  <div class="space-y-6" data-controller="ogp-fetcher">
     <div>
       <%= f.label :title, "プロジェクト名", class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.text_field :title, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+        <%= f.text_field :title, data: { "ogp-fetcher-target": "title" }, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
       </div>
     </div>
 
     <div>
       <%= f.label :description, "説明", class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.text_area :description, rows: 3, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+        <%= f.text_area :description, rows: 3, data: { "ogp-fetcher-target": "description" }, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
       </div>
     </div>
 
     <div>
       <%= f.label :url, "URL", class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.text_field :url, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "https://example.com" %>
+        <%= f.text_field :url, data: { "ogp-fetcher-target": "url", action: "change->ogp-fetcher#fetch" }, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "https://example.com" %>
+          <p class="mt-1 text-sm text-gray-500">URLを入力すると自動で情報を取得します。</p>
       </div>
     </div>
 
     <div>
       <%= f.label :image_data, "画像URL (一時的)", class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= f.text_field :image_data, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+        <%= f.text_field :image_data, data: { "ogp-fetcher-target": "image" }, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
       </div>
       <p class="mt-2 text-sm text-gray-500">※ 本来はActiveStorage等でアップロードしますが、簡易実装のためURLを入力してください。</p>
     </div>
