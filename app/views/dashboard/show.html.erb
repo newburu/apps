@@ -56,12 +56,19 @@
     </div>
     
     <% if @projects.any? %>
-      <ul role="list" class="divide-y divide-gray-200">
+      <ul role="list" class="divide-y divide-gray-200" data-controller="sortable" data-sortable-url-value="<%= move_dashboard_project_path(':id') %>">
         <% @projects.each do |project| %>
-          <li class="py-4 flex justify-between">
-            <div class="flex flex-col">
-              <p class="text-sm font-medium text-gray-900"><%= project.title %></p>
-              <p class="text-sm text-gray-500 truncate"><%= project.url %></p>
+          <li class="py-4 flex justify-between items-center" data-id="<%= project.id %>">
+            <div class="flex items-center">
+              <div class="handle cursor-move mr-4 text-gray-400 hover:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                </svg>
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-medium text-gray-900"><%= project.title %></p>
+                <p class="text-sm text-gray-500 truncate"><%= project.url %></p>
+              </div>
             </div>
             <div class="flex items-center space-x-4">
                <%= link_to "編集", edit_dashboard_project_path(project), class: "text-indigo-600 hover:text-indigo-900 text-sm" %>

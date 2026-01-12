@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       collection do
         get :get_ogp
       end
+      member do
+        patch :move
+      end
     end
   end
 

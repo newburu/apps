@@ -22,6 +22,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def move
+    @project = current_user.projects.find(params[:id])
+    @project.insert_at(params[:position].to_i)
+    head :ok
+  end
+
   def new
     @project = current_user.projects.build
   end

@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :user
+  acts_as_list scope: :user
+  default_scope { order(position: :asc) }
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :description, length: { maximum: 1000 }, allow_blank: true
