@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   has_many :projects, dependent: :destroy
 
-  validates :name, presence: true
-  validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9_\-]+\z/, message: "uses invalid characters" }
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :slug, presence: true, uniqueness: true, length: { maximum: 255 }, format: { with: /\A[a-zA-Z0-9_\-]+\z/, message: "uses invalid characters" }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

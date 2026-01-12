@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
   belongs_to :user
 
-  validates :title, presence: true
-  validates :url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: "must be a valid URL" }
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :description, length: { maximum: 1000 }, allow_blank: true
+  validates :url, presence: true, length: { maximum: 2048 }, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/, allow_blank: true }
+  validates :image_data, length: { maximum: 2048 }, allow_blank: true, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/, allow_blank: true }
 end

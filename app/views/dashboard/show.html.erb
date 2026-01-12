@@ -5,7 +5,11 @@
         <h3 class="text-lg font-medium leading-6 text-gray-900">プロフィール設定</h3>
         <p class="mt-1 text-sm text-gray-500">
           公開されるポートフォリオの情報を設定します。<br>
-          公開URL: <%= link_to user_portfolio_url(@user.slug), user_portfolio_path(@user.slug), class: "text-indigo-600 hover:text-indigo-500", target: "_blank" %>
+          <% if @user.slug.present? %>
+            公開URL: <%= link_to user_portfolio_url(@user.slug), user_portfolio_path(@user.slug), class: "text-indigo-600 hover:text-indigo-500", target: "_blank" %>
+          <% else %>
+            公開URL: (スラッグを設定してください)
+          <% end %>
         </p>
       </div>
       <div class="mt-5 md:mt-0 md:col-span-2">
@@ -24,7 +28,7 @@
           <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-4">
               <%= f.label :name, "表示名", class: "block text-sm font-medium text-gray-700" %>
-              <%= f.text_field :name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              <%= f.text_field :name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md", required: true %>
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -33,7 +37,7 @@
                 <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                   <%= root_url %>
                 </span>
-                <%= f.text_field :slug, class: "focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" %>
+                <%= f.text_field :slug, class: "focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300", required: true, pattern: "[a-zA-Z0-9_\-]+" %>
               </div>
             </div>
           </div>

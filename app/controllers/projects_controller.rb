@@ -4,6 +4,12 @@ class ProjectsController < ApplicationController
 
   def get_ogp
     url = params[:url]
+    return render json: { error: "Invalid URL" }, status: :unprocessable_entity if url.blank?
+
+    unless url =~ /\Ahttps?:\/\//
+      return render json: { error: "Invalid protocol" }, status: :unprocessable_entity
+    end
+
     begin
       page = MetaInspector.new(url)
       render json: {
