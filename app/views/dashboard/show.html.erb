@@ -10,6 +10,15 @@
       </div>
       <div class="mt-5 md:mt-0 md:col-span-2">
         <%= form_with(model: @user, url: dashboard_path, local: true) do |f| %>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <h3 class="font-bold">入力内容に以下のエラーがあります:</h3>
+              <ul class="list-disc list-inside">
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+
           <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-4">
               <%= f.label :name, "表示名", class: "block text-sm font-medium text-gray-700" %>

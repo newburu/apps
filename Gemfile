@@ -44,6 +44,7 @@ gem "image_processing", "~> 1.2"
 
 # Environment variables
 gem "dotenv-rails"
+gem "rails-i18n"
 
 # Authentication
 gem "devise"

@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      project: "プロジェクト"
+    attributes:
+      user:
+        name: "表示名"
+        slug: "URLスラッグ"
+        email: "メールアドレス"
+      project:
+        title: "プロジェクト名"
+        description: "説明"
+        url: "URL"
+        image_data: "画像URL"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
