@@ -1,4 +1,4 @@
-server "123.456.78.90", user: "deploy", roles: %w{app db web}
+server ENV.fetch('DEPLOY_SERVER_IP'), user: ENV.fetch('DEPLOY_USER'), roles: %w{app db web}
 
 # Custom SSH Options
 # set :ssh_options, {

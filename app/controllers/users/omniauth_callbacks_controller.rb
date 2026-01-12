@@ -3,12 +3,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     handle_auth "Google"
   end
 
-  def twitter
+  def twitter2
     handle_auth "X (Twitter)"
   end
 
   def failure
-    redirect_to root_path
+    error_type = request.env["omniauth.error.type"]
+    error_msg = request.env["omniauth.error"]&.message
+    redirect_to root_path, alert: "認証に失敗しました: #{error_type} / #{error_msg}"
   end
 
   private
