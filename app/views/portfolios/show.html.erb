@@ -1,0 +1,33 @@
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+  <div class="text-center mb-12">
+    <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl"><%= @user.name %>のポートフォリオ</h1>
+    <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">Projects & Works</p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8">
+    <% @projects.each do |project| %>
+      <div class="group relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gray-200">
+          <% if project.image_data.present? %>
+            <%# Assuming image_data stores a URL for now as per simple setup, or ActiveStorage variant %>
+            <%# For this MVP, we will use a placebo if no image mechanism is fully set up yet %>
+            <img src="<%= project.image_data %>" alt="<%= project.title %>" class="w-full h-full object-center object-cover">
+          <% else %>
+             <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
+               No Image
+             </div>
+          <% end %>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-medium text-gray-900">
+            <%= link_to project.title, portfolio_project_detail_path(@user.slug, project), class: "" %>
+          </h3>
+          <p class="mt-1 text-sm text-gray-500 line-clamp-3"><%= project.description %></p>
+          <div class="mt-4">
+             <%= link_to "詳細を見る", portfolio_project_detail_path(@user.slug, project), class: "text-indigo-600 hover:text-indigo-500 font-medium text-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

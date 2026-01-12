@@ -1,0 +1,64 @@
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">プロフィール設定</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          公開されるポートフォリオの情報を設定します。<br>
+          公開URL: <%= link_to user_portfolio_url(@user.slug), user_portfolio_path(@user.slug), class: "text-indigo-600 hover:text-indigo-500", target: "_blank" %>
+        </p>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <%= form_with(model: @user, url: dashboard_path, local: true) do |f| %>
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6 sm:col-span-4">
+              <%= f.label :name, "表示名", class: "block text-sm font-medium text-gray-700" %>
+              <%= f.text_field :name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+              <%= f.label :slug, "URLスラッグ (英数字)", class: "block text-sm font-medium text-gray-700" %>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                  <%= root_url %>
+                </span>
+                <%= f.text_field :slug, class: "focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" %>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 text-right">
+             <%= f.submit "保存する", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="flex justify-between items-center mb-4">
+       <h3 class="text-lg font-medium leading-6 text-gray-900">プロジェクト一覧</h3>
+       <%= link_to "新規プロジェクト追加", new_dashboard_project_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700" %>
+    </div>
+    
+    <% if @projects.any? %>
+      <ul role="list" class="divide-y divide-gray-200">
+        <% @projects.each do |project| %>
+          <li class="py-4 flex justify-between">
+            <div class="flex flex-col">
+              <p class="text-sm font-medium text-gray-900"><%= project.title %></p>
+              <p class="text-sm text-gray-500 truncate"><%= project.url %></p>
+            </div>
+            <div class="flex items-center space-x-4">
+               <%= link_to "編集", edit_dashboard_project_path(project), class: "text-indigo-600 hover:text-indigo-900 text-sm" %>
+               <%= link_to "削除", dashboard_project_path(project), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "text-red-600 hover:text-red-900 text-sm" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="text-center py-10 text-gray-500">
+        プロジェクトがまだありません。追加してみましょう！
+      </div>
+    <% end %>
+  </div>
+</div>
