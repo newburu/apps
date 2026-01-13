@@ -58,9 +58,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: apps_production
-    username: apps
-    password: <%= ENV["APPS_DATABASE_PASSWORD"] %>
+    database: <%= ENV.fetch("APP_NAME") %>_production
   cache:
     <<: *primary_production
     database: apps_production_cache

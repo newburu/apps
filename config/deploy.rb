@@ -1,14 +1,15 @@
 # config valid for current version and patch releases of Capistrano
+require "dotenv/load"
 lock "~> 3.10"
 
-set :application, "portfolio_service"
-set :repo_url, "git@github.com:username/repo.git" # User needs to update this
+set :application, ENV.fetch("APP_NAME")
+set :repo_url, ENV.fetch("GIT_REPO_URL")
 
 # Default branch is :master
 set :branch, 'main'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/portfolio_service"
+set :deploy_to, ENV.fetch("DEPLOY_PATH")
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
