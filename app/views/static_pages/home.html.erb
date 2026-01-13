@@ -3,7 +3,7 @@
     <div class="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen"></div>
     <div class="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
       <div>
-        <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">ポートフォリオ作成サービス</h2>
+        <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">ポートフォリオ作成サービス Wacca</h2>
         <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">あなたの作品を世界へ</h3>
       </div>
     </div>
@@ -82,12 +82,12 @@
         <div class="mt-10 flex text-base max-w-prose mx-auto lg:max-w-none">
           <% unless user_signed_in? %>
             <div class="rounded-md shadow">
-              <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700" do %>
+              <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "cursor-pointer w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700" do %>
                 Googleで始める
               <% end %>
             </div>
             <div class="rounded-md shadow ml-4">
-               <%= button_to user_twitter2_omniauth_authorize_path, data: { turbo: false }, class: "w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50" do %>
+               <%= button_to user_twitter2_omniauth_authorize_path, data: { turbo: false }, class: "cursor-pointer w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50" do %>
                 Xで始める
               <% end %>
             </div>
@@ -95,5 +95,122 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="py-16 bg-gray-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Features</h2>
+      <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">Waccaの特徴</p>
+      <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">エンジニア・クリエイターのポートフォリオ作成に必要な機能を、シンプルに詰め込みました。</p>
+    </div>
+
+    <div class="mt-12">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Feature 1 -->
+        <div class="pt-6">
+          <div class="flow-root bg-white rounded-lg px-6 pb-8">
+            <div class="-mt-6">
+              <div>
+                <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                  <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                </span>
+              </div>
+              <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">かんたん整理</h3>
+              <p class="mt-5 text-base text-gray-500">ドラッグ＆ドロップでプロジェクトの並び順を自由に変更。見せたい作品を一番上に。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="pt-6">
+          <div class="flow-root bg-white rounded-lg px-6 pb-8">
+            <div class="-mt-6">
+              <div>
+                <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                  <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </span>
+              </div>
+              <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">自動OGP取得</h3>
+              <p class="mt-5 text-base text-gray-500">URLを入力するだけで、タイトルや画像を自動で取得。面倒な入力作業は不要です。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="pt-6">
+          <div class="flow-root bg-white rounded-lg px-6 pb-8">
+            <div class="-mt-6">
+              <div>
+                <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                  <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </span>
+              </div>
+              <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">すぐに公開</h3>
+              <p class="mt-5 text-base text-gray-500">アカウントを作れば、あなただけのポートフォリオページが即座に完成。世界中にシェアしましょう。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="relative bg-white py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-base font-semibold uppercase tracking-wider text-indigo-600">How It Works</h2>
+    <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">3ステップで完成</p>
+    <div class="mt-12">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div>
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 font-bold text-xl mx-auto mb-4">1</div>
+          <h3 class="text-xl font-bold text-gray-900">アカウント作成</h3>
+          <p class="mt-2 text-gray-500">GoogleまたはXアカウントでワンクリックログイン。面倒なフォーム入力はありません。</p>
+        </div>
+        <div>
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 font-bold text-xl mx-auto mb-4">2</div>
+          <h3 class="text-xl font-bold text-gray-900">プロジェクト追加</h3>
+          <p class="mt-2 text-gray-500">作った作品のURLや画像を登録。説明文を添えて、あなたの実績を並べましょう。</p>
+        </div>
+        <div>
+          <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 font-bold text-xl mx-auto mb-4">3</div>
+          <h3 class="text-xl font-bold text-gray-900">公開＆シェア</h3>
+          <p class="mt-2 text-gray-500">あなたのポートフォリオURLをSNSでシェア。非公開設定も可能です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom CTA Section -->
+<div class="bg-indigo-700">
+  <div class="max-w-4xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+      <span class="block">準備はいいですか？</span>
+      <span class="block">無料でポートフォリオを作成しよう。</span>
+    </h2>
+    <p class="mt-4 text-lg leading-6 text-indigo-200">
+      Waccaは、クリエイターの活動を応援しています。<br>
+      今すぐアカウントを作成して、あなたの作品をまとめましょう。
+    </p>
+    <% if user_signed_in? %>
+      <div class="mt-8 flex justify-center">
+        <%= link_to dashboard_path, class: "inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50" do %>
+          ダッシュボードへ
+        <% end %>
+      </div>
+    <% else %>
+      <div class="mt-8 flex justify-center gap-4">
+        <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "cursor-pointer inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50" do %>
+          Googleで始める
+        <% end %>
+        <%= button_to user_twitter2_omniauth_authorize_path, data: { turbo: false }, class: "cursor-pointer inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 border border-indigo-500" do %>
+          Xで始める
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Portfolio Service" %></title>
+    <title><%= content_for(:title) || "Wacca" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -13,7 +13,6 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -32,7 +31,10 @@
                   <span class="text-xs text-slate-500 font-medium group-hover:text-slate-400">Projects & Works</span>
                 <% end %>
               <% else %>
-                <%= link_to "PortfolioService", root_path, class: "text-2xl font-bold text-indigo-600" %>
+                <%= link_to root_path, class: "flex items-center group" do %>
+                   <%= image_tag "wacca_logo.png", class: "h-10 w-auto transition-transform group-hover:scale-110", alt: "Wacca" %>
+                   <span class="ml-3 text-3xl font-bold text-indigo-600 tracking-tight">Wacca</span>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -68,7 +70,7 @@
     <footer class="bg-white border-t border-gray-200 mt-auto">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <p class="text-center text-gray-500 text-sm">
-          &copy; <%= Time.current.year %> Portfolio Service. All rights reserved.
+          &copy; <%= Time.current.year %> Wacca. All rights reserved.
         </p>
       </div>
     </footer>
