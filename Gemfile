@@ -47,6 +47,7 @@ gem "metainspector", "~> 5.0"
 # Environment variables
 gem "dotenv-rails"
 gem "rails-i18n"
+gem "meta-tags"
 
 # Authentication
 gem "devise"
