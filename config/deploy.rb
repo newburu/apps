@@ -54,6 +54,7 @@ set :puma_enable_linger, false
 set :puma_service_unit_env_vars, %w[
   RAILS_ENV=production
 ]
+set :puma_systemctl_user, :user
 
 # Ensure Puma is restarted after deployment
 after "deploy:finished", "puma:restart"
