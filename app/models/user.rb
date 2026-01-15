@@ -14,7 +14,8 @@ class User < ApplicationRecord
       user.email = auth.info.email.presence || "change_me_#{auth.uid}@example.com"
       user.name = auth.info.name
       # Verify if nickname exists (X/Twitter), otherwise use name or random string for slug
-      base_slug = auth.info.nickname.presence || auth.info.name.to_s.parameterize
+      parameterized_name = (auth.info.nickname.presence || auth.info.name).to_s.parameterize
+      base_slug = parameterized_name.presence || "user-#{auth.uid}"
       new_slug = base_slug
       counter = 1
       while User.exists?(slug: new_slug)
