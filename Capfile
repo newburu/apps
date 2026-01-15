@@ -34,25 +34,22 @@ require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 # require "capistrano/puma"
 # Workaround for load issue where Capistrano::Puma is not defined
-puts "Checking for capistrano3-puma gem..."
-if Gem.loaded_specs['capistrano3-puma']
-  puts "capistrano3-puma found in loaded_specs"
-  puma_gem_path = Gem.loaded_specs['capistrano3-puma'].full_gem_path
+# Standard require failed previously, so we use the path workaround unconditionally now.
+# We expect capistrano3-puma to be installed.
+puma_spec = Gem::Specification.find_by_name('capistrano3-puma')
+puma_gem_path = puma_spec.full_gem_path
 
-  # Add gem lib to $LOAD_PATH so that internal requires like 'capistrano/puma/systemd' work
-  $LOAD_PATH.unshift(File.join(puma_gem_path, 'lib'))
+# Add gem lib to $LOAD_PATH so that internal requires like 'capistrano/puma/systemd' work
+$LOAD_PATH.unshift(File.join(puma_gem_path, 'lib'))
 
-  require 'capistrano/puma'
-  install_plugin Capistrano::Puma
+require 'capistrano/puma'
+install_plugin Capistrano::Puma
 
-  require 'capistrano/puma/systemd'
-  install_plugin Capistrano::Puma::Systemd
+require 'capistrano/puma/systemd'
+install_plugin Capistrano::Puma::Systemd
 
-  # Explicitly load tasks as they seem to be missing from auto-load
-  Dir.glob(File.join(puma_gem_path, "lib", "capistrano", "tasks", "*.rake")).each { |r| import r }
-else
-  puts "capistrano3-puma NOT found in loaded_specs"
-end
+# Explicitly load tasks as they seem to be missing from auto-load
+# Dir.glob(File.join(puma_gem_path, "lib", "capistrano", "tasks", "*.rake")).each { |r| import r }
 
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
